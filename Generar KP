@@ -1,0 +1,21 @@
+def Peso(n):
+     return Np.array([random.randint(random.randint(5,10), random.randint(50,60)) for _ in range(n)])
+def Valor(R,n,m):
+    return Np.array([round(R[random.randint(0,m-1)][i]*random.uniform(random.uniform(1,1.5),random.uniform(2.5,3))) for i in range(n)])
+def GeneradorS(n,w,V):
+    return Np.sum(random.choices(w,k=n-M.floor(M.sqrt(n))))
+def GeneradorW(n,w,V):
+    return Np.min([GeneradorS(n,w,V) for _ in range(4)])-n
+def Unidades(n,W,w):
+    if len(w)<20:
+        return Np.array([random.randint(1, int(int(W/Np.min(w))/2)) for _ in range(n)])
+    else:
+        return Np.array([random.randint(1,random.randint(5,15)) for _ in range(n)])
+def kp(n,m):
+    R=[Peso(n) for _ in range(m)]
+    V=Valor(R,n,m)
+    Ws=Np.zeros(m)
+    for i in range(m):
+        Ws[i]=int(GeneradorW(n,R[i],V))
+        b=Unidades(n,Ws[0],R[0])
+    return V,R,Ws.astype(int,copy=False),b
