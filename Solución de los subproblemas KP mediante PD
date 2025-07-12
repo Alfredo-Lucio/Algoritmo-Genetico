@@ -1,0 +1,16 @@
+def Evaluacion(V,R,W,KP):
+    F=[]
+    S=[]
+    for i in range(len(R)):
+        H=KP(W[i],R[i],V)
+        F.append(H[0])
+        S.append(H[1])
+    return Np.min(F),S[Np.argmin(F)],EvCapacidad(R,W,S[Np.argmin(F)])
+def EvaluacionBKP(V,R,W,b):
+    F=[]
+    S=[]
+    for i in range(len(R)):
+        H=BKP(W[i],R[i],V,b)
+        F.append(H[0])
+        S.append(H[1])
+    return Np.min(F),S[Np.argmin(F)],EvCapacidad(R,W,S[Np.argmin(F)])
