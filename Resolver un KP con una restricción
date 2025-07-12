@@ -1,0 +1,64 @@
+def OIKP(W,w,V):
+    n=len(w);
+    F=Np.zeros((W+1,n+1))
+    X=Np.zeros((W+1,n))
+    for j in range(n-1,-1,-1):
+        for y in range(w[j]-1):
+            F[y,j]=F[y,j+1]
+        for y in range(w[j],W+1):
+            if F[y-w[j],j+1]+V[j] >= F[y,j+1]:
+                F[y,j]=F[y-w[j],j+1]+V[j]
+                X[y,j]=1
+            else:
+                F[y,j]=F[y,j+1]
+    Sol=Np.zeros((n))
+    i=W
+    for y in range(n):
+        Sol[y]=X[i,y]
+        i=int(i-X[i,y]*w[y])
+    return F[W,0],Np.astype(Sol,int,copy=False)
+def BKP(W,w,V,b):
+    n=len(w);
+    F=Np.zeros((W+1,n+1))
+    X=Np.zeros((W+1,n))
+    for j in range(n-1,0,-1):
+        xj=Np.min(([M.trunc(W/w[j]),b[j]]))
+        for y in range(W+1):
+            fj=Np.zeros((xj+1))
+            i=0
+            while y-i*w[j]>=0 and i<=xj:
+                fj[i]=F[y-i*w[j],j+1]+i*V[j]
+                i+=1
+            F[y,j]=Np.max(fj)
+            X[y,j]=Np.argmax(fj)
+    i=0
+    xj=Np.min(([M.trunc(W/w[0]),b[0]]))
+    fj=Np.zeros((xj+1))
+    while W-i*w[0]>=0 and i<=xj:
+        fj[i]=F[W-i*w[0],1]+i*V[0]
+        i+=1
+    F[W,0]=Np.max(fj)
+    X[W,0]=Np.argmax(fj)
+    Sol=Np.zeros((n))
+    i=W
+    for y in range(n):
+        Sol[y]=X[i,y]
+        i=int(i-X[i,y]*w[y])
+    return F[W,0],Np.astype(Sol,int,copy=False)
+def UKP(W,w,V):
+    n=len(w)
+    F=Np.zeros((W+1))
+    r=Np.zeros((W+1))
+    Sol=Np.zeros((n))
+    for j in range(n-1,-1,-1):
+        for y in range(w[j],W+1):
+            if F[y-w[j]]+V[j] >= F[y]:
+                F[y]=F[y-w[j]]+V[j]
+                r[y]=j+1
+    i=0
+    d=W
+    while d>0 and r[d]!=0:
+        i=int(r[d]-1)
+        Sol[i]+=1
+        d-=w[i]
+    return F[W],Np.astype(Sol,int,copy=False)
