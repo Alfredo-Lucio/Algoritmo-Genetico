@@ -1,0 +1,89 @@
+#Con solución de partida
+def AlgGenOI(P,X,N,G,ProbMut):
+    V=P[0]
+    R=P[1]
+    W=P[2]
+    Y=[]
+    #Generacion de poblacion inicial
+    Poblacion=Poblacion_InicialOI(R,W,N,X,V)
+
+    #Calculo de la aptitud
+    F=Np.array([Aptitud(V,x) for x in Poblacion])
+
+    #Paso de las generaciones
+    for gen in range(G):
+        #Creacion de la descendencia
+        Descendencia=[]
+
+        #Aplicar Elitismo
+        Descendencia.append(Poblacion[Np.argmax(F)])
+        Y.append(Np.max(F))
+
+        while len(Descendencia)<N:
+            Padre1=Torneo(Poblacion,F)
+            Padre2=Torneo(Poblacion,F)
+
+            #Cruce
+            Hijo1,Hijo2=Cruce(Padre1, Padre2)
+
+            #Mutacion
+            Hijo1=MutacionOI(Hijo1,ProbMut)
+            Hijo2=MutacionOI(Hijo2,ProbMut)
+
+            #Evaluacion de factibilidad
+            if Aptitud(V,Hijo1)<=int(X[0]) and EvCapacidad(R,W,Hijo1):
+                Descendencia.append(Hijo1)
+            if Aptitud(V,Hijo2)<=int(X[0]) and EvCapacidad(R,W,Hijo2):
+                Descendencia.append(Hijo2)
+        Poblacion=Descendencia
+        #Calculo de la aptitud
+        F=Np.array([Aptitud(V,x) for x in Poblacion])
+
+    Y.append(Np.max(F))
+    Grafica(Y)
+    return Poblacion[Np.argmax(F)],Np.max(F)
+
+#Sin solución de partida
+def AlgGenOI2(P,N,G,ProbMut):
+    V=P[0]
+    R=P[1]
+    W=P[2]
+    Y=[]
+    #Generacion de poblacion inicial
+    Poblacion=Poblacion_InicialOI2(R,W,N,V)
+
+    #Calculo de la aptitud
+    F=Np.array([Aptitud(V,x) for x in Poblacion])
+
+    #Paso de las generaciones
+    for gen in range(G):
+        #Creacion de la descendencia
+        Descendencia=[]
+
+        #Aplicar Elitismo
+        Descendencia.append(Poblacion[Np.argmax(F)])
+        Y.append(Np.max(F))
+
+        while len(Descendencia)<N:
+            Padre1=Torneo(Poblacion,F)
+            Padre2=Torneo(Poblacion,F)
+
+            #Cruce
+            Hijo1,Hijo2=Cruce(Padre1, Padre2)
+
+            #Mutacion
+            Hijo1=MutacionOI(Hijo1,ProbMut)
+            Hijo2=MutacionOI(Hijo2,ProbMut)
+
+            #Evaluacion de factibilidad
+            if EvCapacidad(R,W,Hijo1):
+                Descendencia.append(Hijo1)
+            if EvCapacidad(R,W,Hijo2):
+                Descendencia.append(Hijo2)
+        Poblacion=Descendencia
+        #Calculo de la aptitud
+        F=Np.array([Aptitud(V,x) for x in Poblacion])
+
+    Y.append(Np.max(F))
+    Grafica(Y)
+    return Poblacion[Np.argmax(F)],Np.max(F)
