@@ -25,3 +25,4 @@ Finalmente, la función *kp(n,m)* es justamente la encargada de generar la insta
       \dots ,
       [w_{m1},w_{m2},w_{m3},\dots,w_{mn}]]$$
 * El vector *W* cuenta con las capacidades máximas de cada conjunto de magnitudes, es decir: $$[W_{1},W_{2},W_{2},\dots ,W_{m}]$$
+* Aún si no se pretende generar un MBKP, el programa siempre regresa al vector correspondiente a las unidades máximas disponibles ($b_{i}$) por artículo: $$[b_{1},b_{2},b_{3},\dots ,b_{n}]$$
