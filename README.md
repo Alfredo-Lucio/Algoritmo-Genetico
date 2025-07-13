@@ -20,8 +20,8 @@ Finalmente, la función *kp(n,m)* es justamente la encargada de generar la insta
 * El vector *V*, correspondiente al vector de beneficios de los artículos, es decir:
      $$[V_{1},V_{2},V_{3},...,V_{n}]$$
 * El vector *R*, contiene los coeficientes de las restricciones de capacidad, es decir, los valores de magnitudes de los articulos correspondientes a cada una de las capacidades:
-     $$[[w_{11},w_{21},w_{31},...,w_{n1}],
-      [w_{12},w_{22},w_{32},\cdots,w_{n2}],
-      \cdots ,
-      [w_{1m},w_{2m},w_{3m},...,w_{nm}]]$$
+     $$[[w_{11},w_{21},w_{31},\dots,w_{n1}],
+      [w_{12},w_{22},w_{32},\dots,w_{n2}],
+      \dots ,
+      [w_{1m},w_{2m},w_{3m},\dots,w_{nm}]]$$
 * 
