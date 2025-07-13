@@ -3,4 +3,12 @@ El presente repositorio cuenta con toda la documentación necesaria para la ejec
 
 A continuación se describe el funcionamiento de cada uno de los códigos para su utilización y/o replicación.
 
-*
+*Nota: Para la correcta ejecución de todos los programas se recomienda importar las bibliotecas necesarias de la siguiente manera:
+ import numpy as Np
+ import math as M
+ import random
+ import matplotlib.pyplot as Plt
+
+*Generador de KP*
+
+El código se encuentra en la sección 
