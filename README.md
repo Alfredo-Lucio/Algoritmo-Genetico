@@ -11,8 +11,12 @@ A continuación se describe el funcionamiento de cada uno de los códigos para s
 -----------------------------------------------------------------------------------
 *Generador de KP*
 
-El código se encuentra en la sección "Generar KP", y se encarga de crear instancias aleatorias con *n* artículos y *m* restricciones. Las siguientes funciones clave para la creación de un KP, permiten su modificación se se requiere generar problemas con caracteríticas particulares:
+El código se encuentra en la sección "Generar KP", y se encarga de crear instancias aleatorias con *n* artículos y *m* restricciones. Dentro de este, se encuentran las siguientes funciones, las cuales permiten la modificación (interna) de sus parámetros si lo que se busca es generar problemas con caracteríticas particulares:
 * La función *Peso* genera las distintas *m* magnitudes correspondientes a un mismo artículo, cuyos valores pueden comprender entre 5 y 60. 
 * La función *Valor* determinar el beneficio por unidad de magnitud de un artículo (en caso de contar con diversas magnitudes, se elige una aleatoriamente), cuyos valores se extienden entre 1 y 3.
 * Por su parte, *Unidades* genera la cantidad máxima de unidades disponibles por artículo, (valor de *b* en una instancia del tipo MBKP). Dicho límite puede estar entre 1 y 15.
 
+Finalmente, la función *kp(n,m)* es justamente la encargada de generar la instancia. Sus parámetros de entrada son *n* correspondiente al número de artículos y *m*, al número de restricciones. El vector de retorno contiene:
+* El vector *V*, correspondiente al vector de beneficios de los artículos:
+     [V_1,V_2,V_3,...,V_{n}]
+* El vector *R*, 
