@@ -8,7 +8,7 @@ A continuación se describe el funcionamiento de cada uno de los códigos para s
  * import math as M
  * import random
  * import matplotlib.pyplot as Plt
-
+-----------------------------------------------------------------------------------
 *Generador de KP*
 
 El código se encuentra en la sección 
