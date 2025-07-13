@@ -11,4 +11,4 @@ A continuación se describe el funcionamiento de cada uno de los códigos para s
 -----------------------------------------------------------------------------------
 *Generador de KP*
 
-El código se encuentra en la sección 
+El código se encuentra en la sección "Generar KP", y se encarga de crear instancias aleatorias con *n* artículos y *m* restricciones {ff}
