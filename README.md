@@ -17,6 +17,11 @@ El código se encuentra en la sección "Generar KP", y se encarga de crear insta
 * Por su parte, *Unidades* genera la cantidad máxima de unidades disponibles por artículo, (valor de *b* en una instancia del tipo MBKP). Dicho límite puede estar entre 1 y 15.
 
 Finalmente, la función *kp(n,m)* es justamente la encargada de generar la instancia. Sus parámetros de entrada son *n* correspondiente al número de artículos y *m*, al número de restricciones. El vector de retorno contiene:
-* El vector *V*, correspondiente al vector de beneficios de los artículos:
-     [V_1,V_2,V_3,...,V_{n}]
-* El vector *R*, 
+* El vector *V*, correspondiente al vector de beneficios de los artículos, es decir:
+     [V1,V2,V3,...,Vn]
+* El vector *R*, contiene los coeficientes de las restricciones de capacidad, es decir, los valores de magnitudes de los articulos correspondientes a cada una de las capacidades:
+     [[w11,w21,w31,...,wn1],
+      [w12,w22,w32,...,wn2],
+      ...
+      [w1m,w2m,w3m,...,wnm]]
+* 
