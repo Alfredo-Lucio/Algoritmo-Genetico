@@ -16,7 +16,7 @@ El código se encuentra en la sección *Generar KP*, y se encarga de crear insta
 * La función *Valor* determinar el beneficio por unidad de magnitud de un artículo (en caso de contar con diversas magnitudes, se elige una aleatoriamente), cuyos valores se extienden entre 1 y 3.
 * Por su parte, *Unidades* genera la cantidad máxima de unidades disponibles por artículo, (valor de *b* en una instancia del tipo MBKP). Dicho límite puede estar entre 1 y 15.
 
-Finalmente, la función *kp(n,m)* es justamente la encargada de generar la instancia. Sus parámetros de entrada son *n* correspondiente al número de artículos y *m*, al número de restricciones. El vector de retorno contiene:
+Finalmente, la función *kp(n,m)* es justamente la encargada de generar la instancia. Sus parámetros de entrada son: *n* correspondiente al número de artículos; y *m*, al número de restricciones. El vector de retorno contiene:
 * El arreglo *V*, correspondiente al vector de beneficios de los artículos, es decir:
      $$[V_{1},V_{2},V_{3},\dots,V_{n}]$$
 * El vector *R* contiene los coeficientes de las restricciones de capacidad, es decir, los valores de magnitudes de los articulos correspondientes a cada una de las capacidades:
@@ -31,7 +31,7 @@ Finalmente, la función *kp(n,m)* es justamente la encargada de generar la insta
 
 Se trata de tres funciones descritas en la sección *Resolver un KP con una restricción*, y tal y como se puede suponer, se trata de los códigos para resolver un 0-1 *KP*, un *BKP* o un *UKP* mediante las ecuaciones de recursión descritas en "". 
 
-Sus parámetros de entrada para los tres casos son *W* correspondiente al valor de capacidad máxima; *w* para el vector de pesos; y *V* el vector de beneficios. Además, para el caso de un *BKP*, también se requiere al vector *b* que contenga las unidades disponibles por artículo.
+Sus parámetros de entrada para los tres casos son: *W* correspondiente al valor de capacidad máxima; *w* para el vector de pesos; y *V* el vector de beneficios. Además, para el caso de un *BKP*, también se requiere al vector *b* que contenga las unidades disponibles por artículo.
 
 Las tres funciones regresaran al valor óptimo alcanzado y su vector solución.
 
@@ -40,41 +40,41 @@ Las tres funciones regresaran al valor óptimo alcanzado y su vector solución.
 
 La sección *Solución de los subproblemas KP mediante PD* contiene el código de las funciones que reciben un KP con varias restricciones, lo dividen en sus respectivos subproblemas y los resuelven individualmente.
 
-En la sección se definen dos funciones, la primera sirve para resolver problemas del tipo *MKP* y *MUKP* y sus parámetros de entrada son:
-* *V*: vector de beneficios
-* *R*: el arreglo que contiene a los vectores de magnitud
-* *W*: el vector que contiene a las capacidades máximas del problema
-* *KP*: que refiere al tipo de problema que se quiere resolver, siendo necesario ingresar *OIKP* si el problema es del tipo *MKP*, o *UKP* si es un *MUKP*
+En la sección se definen dos funciones, la primera sirve para resolver problemas del tipo *MKP* y *MUKP* donde sus parámetros de entrada son:
+* *V*: vector de beneficios.
+* *R*: el arreglo que contiene a los vectores de magnitud.
+* *W*: el vector que contiene a las capacidades máximas del problema.
+* *KP*: que refiere al tipo de problema que se quiere resolver, siendo necesario ingresar *OIKP* si el problema es del tipo *MKP*, o *UKP* si es un *MUKP*.
 
-Por otro lado, la segunda función es exclusiva para un *MBKP*; y recibe los mismos parámetros ya descritos a excepción el último (el *KP*), el cual se cambia por el vector de unidades disponibles por artículo *b*.
+Por su parte, la segunda función es exclusiva para un *MBKP*; y recibe los mismos parámetros ya descritos a excepción el último (el *KP*), el cual se cambia por el vector de unidades disponibles por artículo *b*.
 
 Ambas funciones regresan el valor óptimo más pequeño generado por los subproblemas, el vector solución que lo genera y *True* si dicha solución cumple con todas las restricciones de capacidad, o *False* si viola al menos una de ellas.
 
 ---------------------------------------------------------------------------------
 **Funciones de apoyo**
 
-En la sección *Operadores* se encuentran todas las funciones necesarias para la correcta ejecución de los Algoritmos genéticos, debido a que funcionan de manera interna dentro de estos, no requieren manipulación directa del usuario/a. Además, estas se encuentran clasificadas según su utilidad para los distintos AG:
+En la sección *Operadores* se encuentran todas las funciones necesarias para la correcta ejecución de los Algoritmos genéticos. Debido a que funcionan de manera interna dentro de estos, no requieren manipulación directa del usuario/a. Además, estas se encuentran clasificadas según su utilidad para los distintos AG:
 1. Universales: Sirven para todos los modelos de *KP*
      * *Grafica(Y)*: Se trata de una función que grafica la evolución de la mejor solución a través de las generaciones.
      * *EvCapacidad(R,W,S)*: Evalua si un candidato a solución o cromosoma cumple con todas las restricciones de capacidad.
      * *Aptitud(V,S)*: Calcula la aptitud de un cromosoma.
      * *Torneo(Poblacion,F)*: Aplica el operador genético del mismo nombre a los cromosomas de una población.
      * *Cruce(Padre1,Padre2)*: Aplica el cruce uniforme a dos cromosomas padre
-3. Exclusivos del *MKP*: Su uso es único para resolver un *MKP*.
+2. Exclusivos del *MKP*: Su uso es único para resolver un *MKP*.
      * *Población_InicialOI(R,W,N,V)*: genera la población inicial para un AG, donde se asigna una parte (miníma) a cromosomas creados alrededor de una solución de partida. 
-     * *Población_InicialOI2(R,W,N,X,V)*: genera la población inicial para un AG, sin considerar una solución de partida.
+     * *Población_InicialOI2(R,W,N,X,V)*: genera la población inicial para un AG sin considerar una solución de partida.
      * *Intercambiar(S)*: función diseñada para generar soluciones factibles a partir de una solución de partida, su labor consiste en hacer intercambios aleatorios de los genes de un cromosoma.
      * *ApagarOI(S)*: función que toma una solución de partida y transforma genes aleatorios cuyo valor original fuera 1 en 0. Su objetivo es generar cromosomas cercanos a dicha solución.
      * *MutaciónOI(Hijo,ProbMut)*: aplica el operador del mismo nombre a los genes de un cromosoma bajo cierta probabilidad.
-5. Generales para el *MBKP* y el *MUKP*: Funciones exclusivas para resolver un *MBKP* o un *MUKP* mediante un Algoritmo Genético.
+3. Generales para el *MBKP* y el *MUKP*: Funciones exclusivas para resolver un *MBKP* o un *MUKP* mediante un Algoritmo Genético.
      * *MutaciónBUKP(Hijo,ProbMut)*: aplica el operador del mismo nombre a los genes de un cromosoma bajo cierta probabilidad.
      * *Truncamientos(S,b)*: toma una solución de partida y trunca sus valores para asegurarse que cumpla con todas las restricciones de capacidad y de unidades máximas.
-7. Exclusivos del *MBKP*: su uso es único para los Algoritmos Genéticos que resuelvan un *MBKP*.
+4. Exclusivos del *MBKP*: su uso es único para los Algoritmos Genéticos que resuelvan un *MBKP*.
      * *ReducirBKP(S,b)*: toma una solución de partida ya truncada y reduce de forma aleatoria los valores de sus genes con el fin de genera cromosomas cercanos a ella.
      * *CapacidadLimiteBKP(R,W,b)*: crea un nuevo vector $\bar{b}$ que ahora considera a las restricciones de capacidad para limitar el número máximo de unidades que se pueden llevar de un mismo articulo. Si dicho valor es menor al calculado por la función, se mantiene sin cambios.
      * *Poblacion_InicialBKP(R,W,N,X,V,b)*: genera la población inicial para el algortimo genético, considerando una solución de partida.
      * *Poblacion_InicialBKP2(R,W,N,V,b)*: genera la población inicial para el algortimo genético, sin considerar una solución de partida.
-9. Exclusivos del *MUKP*: su uso es único para los Algoritmos Genéticos que resuelvan un *MUKP*.
+5. Exclusivos del *MUKP*: su uso es único para los Algoritmos Genéticos que resuelvan un *MUKP*.
      * *CapacidadLimiteUKP(R,W)*: crea un vector $b$ para limitar el número máximo de unidades que se pueden llevar de un mismo articulo según las restricciones de capacidad.
      * *ReducirUKP(S,b)*: toma una solución de partida ya truncada y reduce de forma aleatoria los valores de sus genes con el fin de genera cromosomas cercanos a ella.
      * *Poblacion_InicialUKP(R,W,N,X,V,b)*: genera la población inicial para el algortimo genético, considerando una solución de partida.
@@ -84,7 +84,7 @@ En la sección *Operadores* se encuentran todas las funciones necesarias para la
 
 En la sección *AG para un MKP*, se encuentran el cuerpo principal de dos versiones de algoritmo genético para resolver un *MKP*. Dichas funciones requieren que los parámetros sean definidos por el usuario/a.
 
-Los parámetros y el orden con el que se ingresan en ambos métodos se describen a continuación:
+Tales parámetros y el orden con el que se ingresan en ambos métodos se describen a continuación:
 
 * *P*: Arreglo que contiene a los elementos del problema tal y como ya se han descrito anteriormente, es decir, $$P=[V,R,W]$$.
 * *X*: Arreglo que contiene la salida de la función *Evaluación(V,R,W,OIKP)*.
@@ -92,7 +92,7 @@ Los parámetros y el orden con el que se ingresan en ambos métodos se describen
 * *G*: Número de generaciones que se quieren ejecutar.
 * *ProbMut*: Probabilidad de mutación, la cual debe definirse $0<\mbox{ProbMut}<1$
 
-Como se aprecia, el primero requiere entre sus parámetros al vector salida de la función *Evaluación(V,R,W,OIKP)* para trabajar con una solución de partida. Para el caso del segundo al generar toda la población inicial de forma aleatoria, dicho parámetro se omite en su totalidad.
+Como se aprecia, el primero requiere entre sus parámetros al vector salida de la función *Evaluación(V,R,W,OIKP)* para trabajar con una solución de partida. Para el caso del segundo y al generar toda la población inicial de forma aleatoria, dicho parámetro se omite en su totalidad.
 
 Ambos métodos generan un gráfico de la evolución de la mejor solución por generación de forma automática. Además de devolver al cromosoma con mayor aptitud y el valor que genera al finalizar todo el proceso.
 
