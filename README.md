@@ -72,10 +72,28 @@ En la sección *Operadores* se encuentran todas las funciones necesarias para la
 7. Exclusivos del *MBKP*: su uso es único para los Algoritmos Genéticos que resuelvan un *MBKP*.
      * *ReducirBKP(S,b)*: toma una solución de partida ya truncada y reduce de forma aleatoria los valores de sus genes con el fin de genera cromosomas cercanos a ella.
      * *CapacidadLimiteBKP(R,W,b)*: crea un nuevo vector $\bar{b}$ que ahora considera a las restricciones de capacidad para limitar el número máximo de unidades que se pueden llevar de un mismo articulo. Si dicho valor es menor al calculado por la función, se mantiene sin cambios.
-     * *Poblacion_InicialBKP(R,W,N,X,V,b)*: genera la población incial para el algortimo genético, considerando una solución de partida.
-     * *Poblacion_InicialBKP2(R,W,N,V,b)*: genera la población incial para el algortimo genético, sin considerar una solución de partida.
+     * *Poblacion_InicialBKP(R,W,N,X,V,b)*: genera la población inicial para el algortimo genético, considerando una solución de partida.
+     * *Poblacion_InicialBKP2(R,W,N,V,b)*: genera la población inicial para el algortimo genético, sin considerar una solución de partida.
 9. Exclusivos del *MUKP*: su uso es único para los Algoritmos Genéticos que resuelvan un *MUKP*.
      * *CapacidadLimiteUKP(R,W)*: crea un vector $b$ para limitar el número máximo de unidades que se pueden llevar de un mismo articulo según las restricciones de capacidad.
      * *ReducirUKP(S,b)*: toma una solución de partida ya truncada y reduce de forma aleatoria los valores de sus genes con el fin de genera cromosomas cercanos a ella.
-     * *Poblacion_InicialUKP(R,W,N,X,V,b)*: genera la población incial para el algortimo genético, considerando una solución de partida.
-     * *Poblacion_InicialUKP2(R,W,N,V,b)*: genera la población incial para el algortimo genético, sin considerar una solución de partida.
+     * *Poblacion_InicialUKP(R,W,N,X,V,b)*: genera la población inicial para el algortimo genético, considerando una solución de partida.
+     * *Poblacion_InicialUKP2(R,W,N,V,b)*: genera la población inicial para el algortimo genético, sin considerar una solución de partida.
+---------------------------------------------------------------------------------
+**Algoritmos Genéticos**
+
+En la sección *AG para un MKP*, se encuentran el cuerpo principal de dos versiones de algoritmo genético para resolver un *MKP*. Dichas funciones requieren que los parámetros sean definidos por el usuario/a.
+
+Los parámetros y el orden con el que se ingresan en ambos métodos se describen a continuación:
+
+* *P*: Arreglo que contiene a los elementos del problema tal y como ya se han descrito anteriormente, es decir, $$P=[V,R,W]$$.
+* *X*: Arreglo que contiene la salida de la función *Evaluación(V,R,W,OIKP)*.
+* *N*: Tamaño de la población.
+* *G*: Número de generaciones que se quieren ejecutar.
+* *ProbMut*: Probabilidad de mutación, la cual debe definirse $0<\mbox{ProbMut}<1$
+
+Como se aprecia, el primero requiere entre sus parámetros al vector salida de la función *Evaluación(V,R,W,OIKP)* para trabajar con una solución de partida. Para el caso del segundo al generar toda la población inicial de forma aleatoria, dicho parámetro se omite en su totalidad.
+
+Ambos métodos generan un gráfico de la evolución de la mejor solución por generación de forma automática. Además de devolver al cromosoma con mayor aptitud y el valor que genera al finalizar todo el proceso.
+
+En la secciones *AG para un MBKP* y *AG para un MUKP* se encuentran los algoritmos para resolver un *MBKP* y un *MUKP* respecitvamente, los cuales operan bajo las condiciones que ya se han mencionado. Con clara excepción del *MBKP*, donde el arreglo *P* debe contener al vector *b* definido al final, es decir, debería estar compuesto de la siguiente forma: $$P=[V,R,W,b]$$
