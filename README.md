@@ -97,3 +97,6 @@ Como se aprecia, el primero requiere entre sus parámetros al vector salida de l
 Ambos métodos generan un gráfico de la evolución de la mejor solución por generación de forma automática. Además de devolver al cromosoma con mayor aptitud y el valor que genera al finalizar todo el proceso.
 
 En la secciones *AG para un MBKP* y *AG para un MUKP* se encuentran los algoritmos para resolver un *MBKP* y un *MUKP* respecitvamente, los cuales operan bajo las condiciones que ya se han mencionado. Con clara excepción del *MBKP*, donde el arreglo *P* debe contener al vector *b* definido al final, es decir, debería estar compuesto de la siguiente forma: $$P=[V,R,W,b]$$
+
+--------------------------------------------------------------------
+**Instancias de ejemplo**
