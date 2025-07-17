@@ -5,9 +5,9 @@ def Grafica(Y):
     Plt.xlabel("Generaciones")
     Plt.ylabel("Aptitud")
     Plt.title("Mejor solución por generación")
-    t=(f"Valor minimo: {int(Np.min(Y))}\n"
-        f"Valor máximo: {int(Np.max(Y))}")
-    Plt.text(int(len(Y)*0.60),int(Np.min(Y)),t)
+    Ymin,Ymax=Np.min(Y),Np.max(Y)
+    t=f"Valor mínimo: {int(Ymin)}\nValor máximo: {int(Ymax)}"
+    Plt.text(len(Y)*0.60,Ymin,t,bbox=dict(facecolor='white', edgecolor='white'))
     Plt.show()
 def EvCapacidad(R,W,S):
     for i in range(len(R)):
