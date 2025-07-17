@@ -122,14 +122,14 @@ def Truncamiento(S,b):
             S[i]=b[i]
 
 #Exclusivas del MBKP
+def CapacidadLimiteBKP(R,W,b):
+    H=[Np.astype(W[i]/Np.array(R[i]),int,copy=False) for i in range(len(W))]
+    H.append(b)
+    return Np.min(H,axis=0)
 def ReducirBKP(S,b):
     J=list(Np.where(S>0)[0])
     for x in random.sample(J,random.randint(1,len(J))):
             S[x]-=random.randint(S[x]//3,S[x]//2+1)
-def CapacidadLimiteBKP(R,W,b):
-    H=[Np.astype(W[i]/R[i],int,copy=False) for i in range(len(W))]
-    H.append(b)
-    return Np.min(H,axis=0)
 def Poblacion_InicialBKP(R,W,N,X,V,b):
     Si=X[1]
     Poblacion=[]
@@ -215,7 +215,7 @@ def Poblacion_InicialBKP2(R,W,N,V,b):
 
 #Exclusivas del MUKP
 def CapacidadLimiteUKP(R,W):
-    H=[Np.astype(W[i]/R[i],int,copy=False) for i in range(len(W))]
+    H=[Np.astype(W[i]/Np.array(R[i]),int,copy=False) for i in range(len(W))]
     return Np.min(H,axis=0)
 def ReducirUKP(S,b):
     J=list(Np.where(S==0)[0])
