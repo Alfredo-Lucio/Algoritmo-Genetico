@@ -28,6 +28,7 @@ def Cruce(Padre1,Padre2):
         else:
             Hijo1[i],Hijo2[i]=Padre2[i],Padre1[i]
     return Np.astype(Hijo1,int,copy=False),Np.astype(Hijo2,int,copy=False)
+
 #Exclusivos del MKP
 def Poblacion_InicialOI(R,W,N,X,V):
     Si=X[1]
@@ -53,7 +54,7 @@ def Poblacion_InicialOI(R,W,N,X,V):
             j+=1
         else:
             e2+=1
-    while j<random.randint(j,N):
+    while j<random.randint(j,J):
         S=Np.astype(Np.zeros((len(V))),int,copy=False)
         for i in range(len(V)):
             Z=S.copy()
@@ -65,7 +66,7 @@ def Poblacion_InicialOI(R,W,N,X,V):
                 Poblacion.append(S)
                 j+=1
                 break
-    while j<N:
+    while j<J:
         S=Np.astype(Np.zeros((len(V))),int,copy=False)
         for i in range(len(V)-1,-1,-1):
             Z=S.copy()
@@ -76,13 +77,13 @@ def Poblacion_InicialOI(R,W,N,X,V):
             else:
                 Poblacion.append(S)
                 j+=1
-                break    
+                break 
     return Poblacion
 def Poblacion_InicialOI2(R,W,N,V):
     Poblacion=[]
     j,e=0,0
     while j<N and e<10000:
-        S=Np.array(random.choice([0,1]) for _ in range(len(V))])
+        S=Np.array([random.choice([0,1]) for _ in range(len(V))])
         if EvCapacidad(R,W,S):
             Poblacion.append(S)
             j+=1
@@ -129,6 +130,7 @@ def MutacionOI(Hijo,ProbMut):
         if random.random()<ProbMut:
             Hijo[i]=1-Hijo[i]
     return Hijo
+
 #Generales para el MBKP y el MUKP
 def MutacionBUKP(b,Hijo,ProbMut):
     for i in range(len(Hijo)):
@@ -144,6 +146,7 @@ def Truncamiento(S,b):
     for i in range(len(S)):
         if S[i]>b[i]:
             S[i]=b[i]
+
 #Exclusivas del MBKP
 def CapacidadLimiteBKP(R,W,b):
     H=[Np.astype(W[i]/Np.array(R[i]),int,copy=False) for i in range(len(W))]
@@ -234,6 +237,7 @@ def Poblacion_InicialBKP2(R,W,N,V,b):
                 j+=1
                 break
     return Poblacion
+
 #Exclusivas del MUKP
 def CapacidadLimiteUKP(R,W):
     H=[Np.astype(W[i]/Np.array(R[i]),int,copy=False) for i in range(len(W))]
