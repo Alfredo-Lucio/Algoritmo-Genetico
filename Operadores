@@ -28,13 +28,12 @@ def Cruce(Padre1,Padre2):
         else:
             Hijo1[i],Hijo2[i]=Padre2[i],Padre1[i]
     return Np.astype(Hijo1,int,copy=False),Np.astype(Hijo2,int,copy=False)
-
 #Exclusivos del MKP
 def Poblacion_InicialOI(R,W,N,X,V):
     Si=X[1]
     Poblacion=[]
-    i,j,e=0,0,0
-    while i<N//20 and e<10000:
+    i,j,e1,e2=0,0,0,0
+    while i<N//20 and e1<10000:
         S=Np.astype(Si.copy(),int,copy=False)
         if random.random()<0.5:
             ApagarOI(S)
@@ -44,30 +43,21 @@ def Poblacion_InicialOI(R,W,N,X,V):
             Poblacion.append(S)
             i+=1
         else:
-            e+=1
+            e1+=1
     print("Se generaron ",i, "soluciones cercanas")
     J=N-i
-    while j<J:
-        S=Np.array([random.randint(0,1) for _ in range(len(V))])
+    while j<J and e2<10000:
+        S=Np.array([random.choice([0,1]) for _ in range(len(V))])
         if Aptitud(V,S)<=int(X[0]) and EvCapacidad(R,W,S):
             Poblacion.append(S)
             j+=1
-    return Poblacion
-def Poblacion_InicialOI2(R,W,N,V):
-    Poblacion=[]
-    j,e1=0,0
-    while j<N and e1<10000:
-        S=Np.array([random.randint(0,1) for _ in range(len(V))])
-        if EvCapacidad(R,W,S):
-            Poblacion.append(S)
-            j+=1
         else:
-            e1+=1
+            e2+=1
     while j<random.randint(j,N):
         S=Np.astype(Np.zeros((len(V))),int,copy=False)
         for i in range(len(V)):
             Z=S.copy()
-            x=random.randint(0,1)
+            x=random.choice([0,1])
             Z[i]=x
             if EvCapacidad(R,W,Z):
                 S[i]=x
@@ -79,7 +69,42 @@ def Poblacion_InicialOI2(R,W,N,V):
         S=Np.astype(Np.zeros((len(V))),int,copy=False)
         for i in range(len(V)-1,-1,-1):
             Z=S.copy()
-            x=random.randint(0,1)
+            x=random.choice([0,1])
+            Z[i]=x
+            if EvCapacidad(R,W,Z):
+                S[i]=x
+            else:
+                Poblacion.append(S)
+                j+=1
+                break    
+    return Poblacion
+def Poblacion_InicialOI2(R,W,N,V):
+    Poblacion=[]
+    j,e=0,0
+    while j<N and e<10000:
+        S=Np.array(random.choice([0,1]) for _ in range(len(V))])
+        if EvCapacidad(R,W,S):
+            Poblacion.append(S)
+            j+=1
+        else:
+            e+=1
+    while j<random.randint(j,N):
+        S=Np.astype(Np.zeros((len(V))),int,copy=False)
+        for i in range(len(V)):
+            Z=S.copy()
+            x=random.choice([0,1])
+            Z[i]=x
+            if EvCapacidad(R,W,Z):
+                S[i]=x
+            else:
+                Poblacion.append(S)
+                j+=1
+                break
+    while j<N:
+        S=Np.astype(Np.zeros((len(V))),int,copy=False)
+        for i in range(len(V)-1,-1,-1):
+            Z=S.copy()
+            x=random.choice([0,1])
             Z[i]=x
             if EvCapacidad(R,W,Z):
                 S[i]=x
@@ -104,7 +129,6 @@ def MutacionOI(Hijo,ProbMut):
         if random.random()<ProbMut:
             Hijo[i]=1-Hijo[i]
     return Hijo
-
 #Generales para el MBKP y el MUKP
 def MutacionBUKP(b,Hijo,ProbMut):
     for i in range(len(Hijo)):
@@ -120,7 +144,6 @@ def Truncamiento(S,b):
     for i in range(len(S)):
         if S[i]>b[i]:
             S[i]=b[i]
-
 #Exclusivas del MBKP
 def CapacidadLimiteBKP(R,W,b):
     H=[Np.astype(W[i]/Np.array(R[i]),int,copy=False) for i in range(len(W))]
@@ -133,7 +156,7 @@ def ReducirBKP(S,b):
 def Poblacion_InicialBKP(R,W,N,X,V,b):
     Si=X[1]
     Poblacion=[]
-    i,e1,e2=0,0,0
+    i,j,e1,e2=0,0,0,0
     while i<N//20 and e1<10000:
         S=Np.astype(Si.copy(),int,copy=False)
         ReducirBKP(S,b)
@@ -144,7 +167,6 @@ def Poblacion_InicialBKP(R,W,N,X,V,b):
             e1+=1
     print("Se generaron ",i, "soluciones cercanas")
     J=N-i
-    j=0
     while j<J and e2<10000:
         S=Np.array([random.randint(0,b[i]//2) for i in range(len(V))])
         if EvCapacidad(R,W,S):
@@ -179,14 +201,14 @@ def Poblacion_InicialBKP(R,W,N,X,V,b):
     return Poblacion
 def Poblacion_InicialBKP2(R,W,N,V,b):
     Poblacion=[]
-    j,e1=0,0
-    while j<N and e1<10000:
+    j,e=0,0
+    while j<N and e<10000:
         S=Np.array([random.randint(0,b[i]//2) for i in range(len(V))])
         if EvCapacidad(R,W,S):
             Poblacion.append(S)
             j+=1
         else:
-            e1+=1
+            e+=1
     while j<random.randint(j,N):
         S=Np.astype(Np.zeros((len(V))),int,copy=False)
         for i in range(len(V)):
@@ -212,7 +234,6 @@ def Poblacion_InicialBKP2(R,W,N,V,b):
                 j+=1
                 break
     return Poblacion
-
 #Exclusivas del MUKP
 def CapacidadLimiteUKP(R,W):
     H=[Np.astype(W[i]/Np.array(R[i]),int,copy=False) for i in range(len(W))]
@@ -227,7 +248,7 @@ def ReducirUKP(S,b):
 def Poblacion_InicialUKP(R,W,N,X,V,b):
     Si=X[1]
     Poblacion=[]
-    i,e1,e2=0,0,0
+    i,j,e1,e2=0,0,0,0
     while i<N//20 and e1<10000:
         S=Np.astype(Si.copy(),int,copy=False)
         ReducirUKP(S,b)
@@ -238,7 +259,6 @@ def Poblacion_InicialUKP(R,W,N,X,V,b):
             e1+=1
     print("Se generaron ",i, "soluciones cercanas")
     J=N-i
-    j=0
     while j<J and e2<10000:
         S=Np.array([random.randint(0,b[i]//M.cbrt(len(V))) for i in range(len(V))])
         if EvCapacidad(R,W,S):
@@ -273,14 +293,14 @@ def Poblacion_InicialUKP(R,W,N,X,V,b):
     return Poblacion
 def Poblacion_InicialUKP2(R,W,N,V,b):
     Poblacion=[]
-    j,e1=0,0
-    while j<N and e1<10000:
+    j,e=0,0
+    while j<N and e<10000:
         S=Np.array([random.randint(0,b[i]//M.cbrt(len(V))) for i in range(len(V))])
         if EvCapacidad(R,W,S):
             Poblacion.append(S)
             j+=1
         else:
-            e1+=1
+            e+=1
     while j<random.randint(j,N):
         S=Np.astype(Np.zeros((len(V))),int,copy=False)
         for i in range(len(V)):
