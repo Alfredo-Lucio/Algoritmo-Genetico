@@ -1,5 +1,5 @@
 def Peso(n):
-     return Np.array([random.randint(random.randint(5,10), random.randint(50,60)) for _ in range(n)])
+     return Np.array([random.randint(random.randint(3,10), random.randint(20,60)) for _ in range(n)])
 def Valor(R,n,m):
     return Np.array([round(R[random.randint(0,m-1)][i]*random.uniform(random.uniform(1,1.5),random.uniform(2.5,3))) for i in range(n)])
 def GeneradorS(n,w,V):
