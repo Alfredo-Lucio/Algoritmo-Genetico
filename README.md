@@ -76,8 +76,8 @@ En la sección *Operadores* se encuentran todas las funciones necesarias para la
      * *MutaciónBUKP(Hijo,ProbMut)*: aplica el operador del mismo nombre a los genes de un cromosoma bajo cierta probabilidad.
      * *Truncamientos(S,b)*: toma una solución de partida y trunca sus valores para asegurarse que cumpla con todas las restricciones de capacidad y de unidades máximas.
 4. Exclusivos del *MBKP*: su uso es único para los Algoritmos Genéticos que resuelvan un *MBKP*.
+     * *CapacidadLimiteBKP(R,W,b)*: crea un nuevo vector $\bar{b}$ que ahora considera a las restricciones de capacidad para limitar el número máximo de unidades que se pueden llevar de un mismo articulo. Si dicho valor es menor al calculado por la función, se mantiene sin cambios.     
      * *ReducirBKP(S,b)*: toma una solución de partida ya truncada y reduce de forma aleatoria los valores de sus genes con el fin de genera cromosomas cercanos a ella.
-     * *CapacidadLimiteBKP(R,W,b)*: crea un nuevo vector $\bar{b}$ que ahora considera a las restricciones de capacidad para limitar el número máximo de unidades que se pueden llevar de un mismo articulo. Si dicho valor es menor al calculado por la función, se mantiene sin cambios.
      * *Poblacion_InicialBKP(R,W,N,X,V,b)*: genera la población inicial para el algortimo genético, considerando una solución de partida.
      * *Poblacion_InicialBKP2(R,W,N,V,b)*: genera la población inicial para el algortimo genético, sin considerar una solución de partida.
 5. Exclusivos del *MUKP*: su uso es único para los Algoritmos Genéticos que resuelvan un *MUKP*.
