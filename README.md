@@ -61,30 +61,30 @@ El uso de estas funciones corre a cargo del usuario/a, quien deberá ingresar lo
 
 En la sección *Operadores* se encuentran todas las funciones necesarias para la correcta ejecución de los Algoritmos genéticos. Debido a que funcionan de manera interna dentro de estos, no requieren manipulación directa del usuario/a. Para facilitar su comprensión, estas se encuentran clasificadas según su utilidad para los distintos AG:
 1. Universales: Sirven para todos los modelos de *KP*
-     * *Grafica(Y)*: Se trata de una función que grafica la evolución de la mejor solución a través de las generaciones.
-     * *EvCapacidad(R,W,S)*: Evalua si un candidato a solución o cromosoma cumple con todas las restricciones de capacidad.
-     * *Aptitud(V,S)*: Calcula la aptitud de un cromosoma.
-     * *Torneo(Poblacion,F)*: Aplica el operador genético del mismo nombre a los cromosomas de una población.
-     * *Cruce(Padre1,Padre2)*: Aplica el cruce uniforme a dos cromosomas padre
+     * *Grafica*: Se trata de una función que grafica la evolución de la mejor solución a través de las generaciones.
+     * *EvCapacidad*: Evalua si un candidato a solución o cromosoma cumple con todas las restricciones de capacidad.
+     * *Aptitud*: Calcula la aptitud de un cromosoma.
+     * *Torneo*: Aplica el operador genético del mismo nombre a los cromosomas de una población.
+     * *Cruce*: Aplica el cruce uniforme a dos cromosomas padre
 2. Exclusivos del *MKP*: Su uso es único para resolver un *MKP*.
-     * *Población_InicialOI(R,W,N,V)*: genera la población inicial para un AG, donde se asigna una parte (miníma) a cromosomas creados alrededor de una solución de partida. 
-     * *Población_InicialOI2(R,W,N,X,V)*: genera la población inicial para un AG sin considerar una solución de partida.
-     * *Intercambiar(S)*: función diseñada para generar soluciones factibles a partir de una solución de partida, su labor consiste en hacer intercambios aleatorios de los genes de un cromosoma.
-     * *ApagarOI(S)*: función que toma una solución de partida y transforma genes aleatorios cuyo valor original fuera 1 en 0. Su objetivo es generar cromosomas cercanos a dicha solución.
-     * *MutaciónOI(Hijo,ProbMut)*: aplica el operador del mismo nombre a los genes de un cromosoma bajo cierta probabilidad.
+     * *Población_InicialOI*: genera la población inicial para un AG, donde se asigna una parte (miníma) a cromosomas creados alrededor de una solución de partida. 
+     * *Población_InicialOI2*: genera la población inicial para un AG sin considerar una solución de partida.
+     * *Intercambiar*: función diseñada para generar soluciones factibles a partir de una solución de partida, su labor consiste en hacer intercambios aleatorios de los genes de un cromosoma.
+     * *ApagarOI*: función que toma una solución de partida y transforma genes aleatorios cuyo valor original fuera 1 en 0. Su objetivo es generar cromosomas cercanos a dicha solución.
+     * *MutaciónOI*: aplica el operador del mismo nombre a los genes de un cromosoma bajo cierta probabilidad.
 3. Generales para el *MBKP* y el *MUKP*: Funciones exclusivas para resolver un *MBKP* o un *MUKP* mediante un Algoritmo Genético.
-     * *MutaciónBUKP(Hijo,ProbMut)*: aplica el operador del mismo nombre a los genes de un cromosoma bajo cierta probabilidad.
-     * *Truncamientos(S,b)*: toma una solución de partida y trunca sus valores para asegurarse que cumpla con todas las restricciones de capacidad y de unidades máximas.
+     * *MutaciónBUKP*: aplica el operador del mismo nombre a los genes de un cromosoma bajo cierta probabilidad.
+     * *Truncamientos*: toma una solución de partida y trunca sus valores para asegurarse que cumpla con todas las restricciones de capacidad y de unidades máximas.
 4. Exclusivos del *MBKP*: su uso es único para los Algoritmos Genéticos que resuelvan un *MBKP*.
-     * *CapacidadLimiteBKP(R,W,b)*: crea un nuevo vector $\bar{b}$ que ahora considera a las restricciones de capacidad para limitar el número máximo de unidades que se pueden llevar de un mismo articulo. Si dicho valor es menor al calculado por la función, se mantiene sin cambios.     
-     * *ReducirBKP(S,b)*: toma una solución de partida ya truncada y reduce de forma aleatoria los valores de sus genes con el fin de genera cromosomas cercanos a ella.
-     * *Poblacion_InicialBKP(R,W,N,X,V,b)*: genera la población inicial para el algortimo genético, considerando una solución de partida.
-     * *Poblacion_InicialBKP2(R,W,N,V,b)*: genera la población inicial para el algortimo genético, sin considerar una solución de partida.
+     * *CapacidadLimiteBKP*: crea un nuevo vector $\bar{b}$ que ahora considera a las restricciones de capacidad para limitar el número máximo de unidades que se pueden llevar de un mismo articulo. Si dicho valor es menor al calculado por la función, se mantiene sin cambios.     
+     * *ReducirBKP*: toma una solución de partida ya truncada y reduce de forma aleatoria los valores de sus genes con el fin de generar cromosomas cercanos a ella.
+     * *Poblacion_InicialBKP*: genera la población inicial para el algortimo genético, considerando una solución de partida.
+     * *Poblacion_InicialBKP2*: genera la población inicial para el algortimo genético, sin considerar una solución de partida.
 5. Exclusivos del *MUKP*: su uso es único para los Algoritmos Genéticos que resuelvan un *MUKP*.
-     * *CapacidadLimiteUKP(R,W)*: crea un vector $b$ para limitar el número máximo de unidades que se pueden llevar de un mismo articulo según las restricciones de capacidad.
-     * *ReducirUKP(S,b)*: toma una solución de partida ya truncada y reduce de forma aleatoria los valores de sus genes con el fin de genera cromosomas cercanos a ella.
-     * *Poblacion_InicialUKP(R,W,N,X,V,b)*: genera la población inicial para el algortimo genético, considerando una solución de partida.
-     * *Poblacion_InicialUKP2(R,W,N,V,b)*: genera la población inicial para el algortimo genético, sin considerar una solución de partida.
+     * *CapacidadLimiteUKP*: crea un vector $b$ para limitar el número máximo de unidades que se pueden llevar de un mismo articulo según las restricciones de capacidad.
+     * *ReducirUKP*: toma una solución de partida ya truncada y reduce de forma aleatoria los valores de sus genes con el fin de genera cromosomas cercanos a ella.
+     * *Poblacion_InicialUKP*: genera la población inicial para el algortimo genético, considerando una solución de partida.
+     * *Poblacion_InicialUKP2*: genera la población inicial para el algortimo genético, sin considerar una solución de partida.
 ---------------------------------------------------------------------------------
 **Algoritmos Genéticos**
 
