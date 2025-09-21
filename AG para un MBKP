@@ -3,9 +3,10 @@ def AlgGenBKP(P,X,N,G,ProbMut):
     V=P[0]
     R=P[1]
     W=P[2]
+    B=P[3]
     Y=[]
     #Truncamiento
-    b=CapacidadLimiteBKP(R,W,P[3])
+    b=CapacidadLimiteBKP(R,W,B)
     Truncamiento(X[1],b)
 
     #Generacion de poblacion inicial
@@ -13,7 +14,8 @@ def AlgGenBKP(P,X,N,G,ProbMut):
 
     #Calculo de la aptitud
     F=Np.array([Aptitud(V,x) for x in Poblacion])
-
+    Y.append(Np.max(F))
+    
     #Paso de las generaciones
     for gen in range(G):
         #Creacion de la descendencia
@@ -21,7 +23,6 @@ def AlgGenBKP(P,X,N,G,ProbMut):
 
         #Aplicar Elitismo
         Descendencia.append(Poblacion[Np.argmax(F)])
-        Y.append(Np.max(F))
 
         while len(Descendencia)<N:
             Padre1=Torneo(Poblacion,F)
@@ -42,26 +43,28 @@ def AlgGenBKP(P,X,N,G,ProbMut):
         Poblacion=Descendencia
         #Calculo de la aptitud
         F=Np.array([Aptitud(V,x) for x in Poblacion])
-
-    Y.append(Np.max(F))
+        Y.append(Np.max(F))
+        
     Grafica(Y)
-    return Poblacion[Np.argmax(F)],Np.max(F)
+    return Poblacion[Np.argmax(F)],int(Np.max(F))
 
 #Sin solución de partida
 def AlgGenBKP2(P,N,G,ProbMut):
     V=P[0]
     R=P[1]
     W=P[2]
+    B=P[3]
     Y=[]
     #Truncamiento
-    b=CapacidadLimiteBKP(R,W,P[3])
+    b=CapacidadLimiteBKP(R,W,B)
 
     #Generacion de poblacion inicial
     Poblacion=Poblacion_InicialBKP2(R,W,N,V,b)
 
     #Calculo de la aptitud
     F=Np.array([Aptitud(V,x) for x in Poblacion])
-
+    Y.append(Np.max(F))
+    
     #Paso de las generaciones
     for gen in range(G):
         #Creacion de la descendencia
@@ -69,7 +72,6 @@ def AlgGenBKP2(P,N,G,ProbMut):
 
         #Aplicar Elitismo
         Descendencia.append(Poblacion[Np.argmax(F)])
-        Y.append(Np.max(F))
 
         while len(Descendencia)<N:
             Padre1=Torneo(Poblacion,F)
@@ -90,7 +92,7 @@ def AlgGenBKP2(P,N,G,ProbMut):
         Poblacion=Descendencia
         #Calculo de la aptitud
         F=Np.array([Aptitud(V,x) for x in Poblacion])
-
-    Y.append(Np.max(F))
+        Y.append(Np.max(F))
+    
     Grafica(Y)
-    return Poblacion[Np.argmax(F)],Np.max(F)
+    return Poblacion[Np.argmax(F)],int(Np.max(F))
