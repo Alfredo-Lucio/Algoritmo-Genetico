@@ -9,7 +9,8 @@ def AlgGenOI(P,X,N,G,ProbMut):
 
     #Calculo de la aptitud
     F=Np.array([Aptitud(V,x) for x in Poblacion])
-
+    Y.append(Np.max(F))
+    
     #Paso de las generaciones
     for gen in range(G):
         #Creacion de la descendencia
@@ -17,7 +18,6 @@ def AlgGenOI(P,X,N,G,ProbMut):
 
         #Aplicar Elitismo
         Descendencia.append(Poblacion[Np.argmax(F)])
-        Y.append(Np.max(F))
 
         while len(Descendencia)<N:
             Padre1=Torneo(Poblacion,F)
@@ -38,10 +38,9 @@ def AlgGenOI(P,X,N,G,ProbMut):
         Poblacion=Descendencia
         #Calculo de la aptitud
         F=Np.array([Aptitud(V,x) for x in Poblacion])
-
-    Y.append(Np.max(F))
+        Y.append(Np.max(F))
     Grafica(Y)
-    return Poblacion[Np.argmax(F)],Np.max(F)
+    return Poblacion[Np.argmax(F)],int(Np.max(F))
 
 #Sin solución de partida
 def AlgGenOI2(P,N,G,ProbMut):
@@ -54,7 +53,8 @@ def AlgGenOI2(P,N,G,ProbMut):
 
     #Calculo de la aptitud
     F=Np.array([Aptitud(V,x) for x in Poblacion])
-
+    Y.append(Np.max(F))
+    
     #Paso de las generaciones
     for gen in range(G):
         #Creacion de la descendencia
@@ -62,7 +62,6 @@ def AlgGenOI2(P,N,G,ProbMut):
 
         #Aplicar Elitismo
         Descendencia.append(Poblacion[Np.argmax(F)])
-        Y.append(Np.max(F))
 
         while len(Descendencia)<N:
             Padre1=Torneo(Poblacion,F)
@@ -83,7 +82,6 @@ def AlgGenOI2(P,N,G,ProbMut):
         Poblacion=Descendencia
         #Calculo de la aptitud
         F=Np.array([Aptitud(V,x) for x in Poblacion])
-
-    Y.append(Np.max(F))
+        Y.append(Np.max(F))
     Grafica(Y)
-    return Poblacion[Np.argmax(F)],Np.max(F)
+    return Poblacion[Np.argmax(F)],int(Np.max(F))
