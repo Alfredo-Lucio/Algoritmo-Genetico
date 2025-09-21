@@ -16,7 +16,7 @@ def OIKP(W,w,V):
     for y in range(n):
         Sol[y]=X[i,y]
         i=int(i-X[i,y]*w[y])
-    return F[W,0],Np.astype(Sol,int,copy=False)
+    return int(F[W,0]),Np.astype(Sol,int,copy=False).tolist()
 def BKP(W,w,V,b):
     n=len(w);
     F=Np.zeros((W+1,n+1))
@@ -44,7 +44,7 @@ def BKP(W,w,V,b):
     for y in range(n):
         Sol[y]=X[i,y]
         i=int(i-X[i,y]*w[y])
-    return F[W,0],Np.astype(Sol,int,copy=False)
+    return int(F[W,0]),Np.astype(Sol,int,copy=False).tolist()
 def UKP(W,w,V):
     n=len(w)
     F=Np.zeros((W+1))
@@ -61,4 +61,4 @@ def UKP(W,w,V):
         i=int(r[d]-1)
         Sol[i]+=1
         d-=w[i]
-    return F[W],Np.astype(Sol,int,copy=False)
+    return int(F[W]),Np.astype(Sol,int,copy=False).tolist()
