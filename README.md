@@ -107,7 +107,16 @@ En la secciones *AG para un MBKP* y *AG para un MUKP* se encuentran los algoritm
 --------------------------------------------------------------------
 **Algoritmos modificados**
 
-Contiene a una versión alternativa de los Algortimos Genéticos que no requieren el ingreso del parámetro correspondiente a la cantidad de generaciones a realizar, pues en su lugar, el método está diseñado para ejecutarse ininterrumpidamente hasta que la solución encontrada no cambie en al menos 100 generaciones
+Contiene a una versión alternativa de los Algortimos Genéticos que no requieren el ingreso del parámetro correspondiente a la cantidad de generaciones a realizar, pues en su lugar, el método está diseñado para ejecutarse ininterrumpidamente hasta que la solución encontrada no cambie en al menos 100 generaciones. En consecuencia, sus parámetros de entrada son únicamente:
+
+* *P*: Arreglo que contiene a los elementos del problema ordenados como sigue: $$P=[V,R,W]$$.
+* *X*: Arreglo que contiene al vector resultante de ejecutar la función *Evaluacion*.
+* *N*: Tamaño de la población.
+* *ProbMut*: Probabilidad de que ocurra una mutación: $0<\mbox{ProbMut}<1$
+
+Estos algoritmos son una versión alternativa a los métodos que funcionan a partir de una solución de partida, por lo que para su correcto funcionamiento, tambien requieren de esta. 
 
 --------------------------------------------------------------------
 **Instancias de ejemplo**
+
+Es esta carpeta se encuentran todas las instancias de todos los modelos, utilizadas en las pruebas, además de un grupo especial perteneciente al *MKP* donde se cumple el primer punto del Teorema 1.
