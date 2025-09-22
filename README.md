@@ -11,7 +11,7 @@ El presente repositorio cuenta con toda la documentación necesaria para el uso 
 -----------------------------------------------------------------------------------
 **Generador de KP**
 
-El código se encuentra en la sección *Generar KP*, y se encarga de crear instancias aleatorias con *n* artículos y *m* restricciones. Dentro de este, se encuentran las siguientes funciones que si bien, no requieren interacción directa con el usuario, de así desearse, se permite la modificación (interna) de sus parámetros con el fin de crear problemas con caracteríticas particulares:
+El código se encuentra en la sección *Generar KP*, y se encarga de crear instancias aleatorias con *n* artículos y *m* restricciones. Dentro de este se encuentran las siguientes funciones que si bien, no requieren interacción directa con el usuario, de así desearse se permite la modificación (interna) de sus parámetros con el fin de crear problemas con caracteríticas particulares:
 * La función *Peso* genera las distintas *m* magnitudes correspondientes a un mismo artículo, cuyos valores pueden comprender entre 3 y 60. 
 * La función *Valor* determinar el beneficio producido por unidad de magnitud de un artículo (en caso de contar con diversas magnitudes, se elige una aleatoriamente), cuyos valores se extienden entre 0.5 y 3.
 * Para el caso de la función *Unidades*, esta se encarga del límite máximo de unidades disponibles para un mismo artículo, (valor de *b* en una instancia del tipo MBKP). Dicho límite puede estar entre 1 y 20.
