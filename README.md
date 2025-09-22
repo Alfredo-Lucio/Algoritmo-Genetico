@@ -120,3 +120,5 @@ Estos algoritmos son una versión alternativa a los métodos que funcionan a par
 **Instancias de ejemplo**
 
 Es esta carpeta se encuentran todas las instancias de todos los modelos, utilizadas en las pruebas, además de un grupo especial perteneciente al *MKP* donde se cumple el primer punto del Teorema 1.
+
+Cada instancia ya se encuentra escrita para simplemente copiar y pegar los datos del problema en la terminal de trabajo; adicionalmente, en la parte inferior se encuentra el vector correspondiente a la mejor solución encontrada hasta el momento junto con el valor óptimo que genera.
