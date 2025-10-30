@@ -1,7 +1,7 @@
 # Algoritmo-Genetico
-El presente repositorio cuenta con toda la documentación necesaria para el uso y entendimiento de los Algoritmos Genéticos que buscan darle solución al Multidimesional Knapsack Problem (MKP), al Multidimesional Bounded Knapsack Problem (MBKP), o al Multidimesional Unbounded Knapsack Problem (MUKP). Además, se presenta un código para la generación de KP aleatorios, utilizados con el fin de probar la eficiencia de los AG. De igual manera, se anexa una carpeta de las instancias (creadas con el generador de problemas), utilizadas en las pruebas desarrolladas en "".
+El presente repositorio cuenta con toda la documentación necesaria para el uso y entendimiento de los Algoritmos Genéticos que buscan darle solución al Multidimesional Knapsack Problem (MKP), al Multidimesional Bounded Knapsack Problem (MBKP), y al Multidimesional Unbounded Knapsack Problem (MUKP). Además, se presenta un código para la generación de KP aleatorios, utilizados con el fin de probar la eficiencia de los AG. De igual manera, se anexa una carpeta de instancias de ejemplo creadas con el generador de problemas.
 
-Únicamente un conjunto reducido de las funciones presentadas (de las cuales se hace mención en su respectiva descripción) requieren interacción directa con el usuario; pues el resto están diseñadas para el funcionamiento interno de los métodos desarrollados.
+Únicamente un conjunto reducido de las funciones presentadas (de las cuales se hace mención en su respectiva descripción) requieren de interacción directa con el usuario; pues el resto están diseñadas para el funcionamiento interno de los métodos desarrollados.
 
 *Nota: Para la correcta ejecución de todos los programas se recomienda importar las bibliotecas necesarias de la siguiente manera:
  * import numpy as Np
@@ -11,9 +11,9 @@ El presente repositorio cuenta con toda la documentación necesaria para el uso 
 -----------------------------------------------------------------------------------
 **Generador de KP**
 
-El código se encuentra en la sección *Generar KP*, y se encarga de crear instancias aleatorias con *n* artículos y *m* restricciones. Dentro de este se encuentran las siguientes funciones que si bien, no requieren interacción directa con el usuario, de así desearse se permite la modificación (interna) de sus parámetros con el fin de crear problemas con caracteríticas particulares:
+El código se encuentra en la sección *Generar KP*, y se encarga de crear instancias aleatorias con *n* artículos y *m* restricciones. Dentro de este se encuentran las siguientes funciones que si bien, no requieren interacción directa con el usuario, se permite la modificación (interna) de sus parámetros con el fin de crear problemas con caracteríticas particulares:
 * La función *Peso* genera las distintas *m* magnitudes correspondientes a un mismo artículo, cuyos valores pueden comprender entre 3 y 60. 
-* La función *Valor* determinar el beneficio producido por unidad de magnitud de un artículo (en caso de contar con diversas magnitudes, se elige una aleatoriamente), cuyos valores se extienden entre 0.5 y 3.
+* La función *Valor* determina el beneficio producido por unidad de magnitud de un artículo (en caso de contar con diversas magnitudes, se elige una aleatoriamente), cuyos valores se extienden entre 0.5 y 3.
 * Para el caso de la función *Unidades*, esta se encarga del límite máximo de unidades disponibles para un mismo artículo, (valor de *b* en una instancia del tipo MBKP). Dicho límite puede estar entre 1 y 20.
 
 Por su parte, la función *kp(n,m)* es la encargada de generar las instancias y la que requiere que sus parámetros sean definidos por el usuario. Tales valores de entrada son: *n* correspondiente al número de artículos; y *m* como el número de restricciones. Al terminar su ejecución, el vector de retorno contendrá:
@@ -25,7 +25,7 @@ Por su parte, la función *kp(n,m)* es la encargada de generar las instancias y 
       \dots ,
       [w_{m1},w_{m2},w_{m3},\dots,w_{mn}]]$$
 * El vector *W* que cuenta con las capacidades máximas de cada conjunto de magnitudes, es decir: $$[W_{1},W_{2},W_{2},\dots ,W_{m}]$$
-* Finalmente y aún si no se pretende generar una instancia del tipo MBKP, el programa siempre regresará al vector correspondiente a las unidades máximas disponibles ($b$) por artículo: $$[b_{1},b_{2},b_{3},\dots ,b_{n}]$$. 
+* Finalmente (aún si no se pretende generar una instancia del tipo MBKP), el programa siempre regresará al vector correspondiente a las unidades máximas disponibles ($b$) por artículo: $$[b_{1},b_{2},b_{3},\dots ,b_{n}]$$. 
 ---------------------------------------------------------------------------------
 **Programación Dinámica para resolver un KP**
 
@@ -98,23 +98,23 @@ Tales parámetros y el orden con el que se ingresan en ambos métodos se describ
 * *G*: Número de generaciones aejecutar.
 * *ProbMut*: Probabilidad de que ocurra una mutación: $0<\mbox{ProbMut}<1$
 
-Como se puede apreciar, el primero método requiere entre sus parámetros al vector salida de la función *Evaluacion* para así trabajar con una solución de partida. Mientras que, para el segundo método, dicho parámetro se omite en su totalidad.
+Como se puede apreciar, el primer método requiere entre sus parámetros al vector salida de la función *Evaluacion* para así trabajar con una solución de partida. Mientras que, para el segundo método, dicho parámetro se omite en su totalidad.
 
-Ambas funciones generan un gráfico de la evolución de la mejor solución por generación de forma automática. Además de devolver al cromosoma con mayor aptitud y al valor que este genera al finalizar todo el proceso.
+Ambas funciones generan un gráfico de la evolución de la mejor solución por generación de forma automática, además de devolver al cromosoma con mayor aptitud y al valor que este genera al finalizar todo el proceso.
 
-En la secciones *AG para un MBKP* y *AG para un MUKP* se encuentran los algoritmos para tales problemas; los cuales operan bajo las condiciones ya descritas. Con clara excepción del *MBKP*, donde el arreglo *P* debe contener al vector *b* definido al final, es decir, este debería estar compuesto de la siguiente forma: $$P=[V,R,W,b]$$
+En la secciones *AG para un MBKP* y *AG para un MUKP* se encuentran los algoritmos para tales problemas; los cuales operan bajo las condiciones ya descritas. La excepción es el *MBKP*, donde el arreglo *P* debe contener al vector *b* definido al final, es decir, este debería estar compuesto de la siguiente forma: $$P=[V,R,W,b]$$
 
 --------------------------------------------------------------------
 **Algoritmos modificados**
 
-Contiene a una versión alternativa de los Algoritmos Genéticos que no requieren el ingreso del parámetro correspondiente a la cantidad de generaciones a realizar, pues en su lugar, el método está diseñado para ejecutarse ininterrumpidamente hasta que la solución encontrada no cambie en al menos 100 generaciones. En consecuencia, sus parámetros de entrada son únicamente:
+En la sección del mismo nombre, se encuentran las versiones alternativas de ambos Algoritmos Genéticos (con y sin solución de partida), donde no se requiere el ingreso del parámetro correspondiente a la cantidad de generaciones a realizar, pues en su lugar, los métodos están diseñados para ejecutarse ininterrumpidamente hasta que la solución encontrada no cambie en al menos 100 generaciones. En consecuencia, sus parámetros de entrada son únicamente: 
 
 * *P*: Arreglo que contiene a los elementos del problema ordenados como sigue: $$P=[V,R,W]$$ (con el vector $b$ al final en caso de un *MBKP*)
 * *X*: Arreglo que contiene al vector resultante de ejecutar la función *Evaluacion*.
 * *N*: Tamaño de la población.
 * *ProbMut*: Probabilidad de que ocurra una mutación: $0<\mbox{ProbMut}<1$
 
-Estos algoritmos son una versión alternativa a los métodos que funcionan a partir de una solución de partida, por lo que para su correcto funcionamiento, también requieren de esta. 
+El parámetro $X$ se omite en la versión del algoritmo que no hace uso de una solución de partida.
 
 --------------------------------------------------------------------
 **Instancias de ejemplo**
